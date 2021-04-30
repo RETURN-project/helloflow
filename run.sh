@@ -3,4 +3,5 @@
 NAME="Pablo R."
 
 # Execute
-singularity run r-rmd.sif Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = '${NAME}'))"
+singularity run r-rmd.sif \
+    Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = '${NAME}'))"
