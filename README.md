@@ -6,7 +6,7 @@
 make install
 ```
 
-Requires [singularity].
+Requires [singularity](https://sylabs.io/guides/3.0/user-guide/index.html).
 
 ## Run
 
