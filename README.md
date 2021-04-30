@@ -20,13 +20,10 @@ Requires sudo and [singularity](https://sylabs.io/guides/3.0/user-guide/index.ht
 The singularity definition file can be built locally with:
 
 ```sh
-make install
-# Will require sudo credentials
+make install # Will require sudo credentials
 ```
 
-and the resulting `.sif` file can be transferred to the remote server. 
-
-This is entirely equivalent to installing.
+and the resulting `.sif` file can be transferred to the remote server. This is entirely equivalent to installing.
 
 ## Run
 
