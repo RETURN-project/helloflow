@@ -1,6 +1,7 @@
 # Parameters
 SINGULARITY_DEF="r-rmd.def"
 SINGULARITY_SIF="r-rmd.sif"
+OUTPUTFILE="output.txt"
 
 # Commands
 install:
@@ -10,7 +11,7 @@ run:
 	./run.sh
 
 clean:
-	rm output.txt parameterized.html
+	rm ${OUTPUTFILE} parameterized.html
 
 clean-hard:
-	rm output.txt *.html ${SINGULARITY_SIF}
+	rm ${SINGULARITY_SIF} ${OUTPUTFILE} parameterized.html
