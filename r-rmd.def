@@ -1,0 +1,6 @@
+BootStrap: docker
+From: rocker/r-rmd
+
+%post
+    # ---------- Install extra packages ----------
+    Rscript -e "install.packages('stringi')"

@@ -1,0 +1,130 @@
+---
+title: "How to pass parameters to a RMarkdown file?"
+author: "Pablo Rodríguez-Sánchez"
+date: "4/29/2021"
+output: html_document
+params:
+  who: "world!"
+  outputfile: "output.txt"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Purpose
+
+This is a minimal example about how to pass parameters to a RMarkdown file.
+Our purpose is to create a very simple "Hello world" script that does two
+things:
+
+1. Says hello.
+2. Saves the greetings to a file.
+
+We want to program it in a way that the name of the person to be greeted can be
+changed from **outside** the file. For this, we'll need to use parameters.
+
+# Using parameters
+
+## Default parameters
+
+The default parameters are found in the YAML header of this document (first 10 
+lines). These parameters will be used if knitting without further details.
+
+For using other parameters, edit the values in the YAML or use `Knit with parameters`
+in the drop-down menu in `RStudio`.
+
+```yaml
+...
+params:
+  who: "world!"
+  outputfile: "output.txt"
+```
+
+## From R console
+
+If the knitting process is launched from the R console, the parameters can be 
+overriden by:
+
+```r
+rmarkdown::render('parameterized.Rmd', params = list(who = 'Pablo'))
+```
+
+## From UNIX console
+
+If the knitting process is launched from the UNIX console, the parameters can be
+overriden in a similar way:
+
+```sh
+Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = 'Pablo'))"
+```
+
+Usually, when we are working in the UNIX console we want to use environment 
+variables. This can be done by:
+
+```sh
+Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = Sys.getenv('USER')))"
+```
+
+or, with more traditional shell notation:
+
+```sh
+Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = '${USER}'))"
+```
+
+**Note**: the use of " instead of ' as the outermost string marker is relevant in
+this last case (i.e.: `Rscript -e 'rmarkdown::render("parameterized.Rmd", params = list(who = "${USER}"))'` will fail).
+
+## From shell script
+
+From what we learned in the previous subsection, using a shell script is 
+straightforward.
+
+The contents of the shell script should be something like this:
+
+```sh
+#!/bin/sh
+
+# Set parameters
+NAME="Pablo"
+
+# Execute
+Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = '${NAME}'))"
+```
+
+After saving, make the script executable by: `chmod +x script_filename.sh`, 
+and execute it by: `./script_filename.sh`.
+
+---
+
+# The script
+
+## Parse parameters
+
+After parsing, the parameters' values are available in the rest of the script, 
+just as usual. Note that the parameters will be named elements of the list 
+`params`.
+
+```{r parse-params}
+who <- params$who
+outputfile <- params$outputfile
+```
+
+## Do something
+
+Greet someone.
+
+```{r create-hello-world}
+str <- paste("Hello", who)
+print(str)
+```
+
+## Create side-effect
+
+In this case, saving a file.
+
+```{r save}
+fileConn <- file(outputfile)
+writeLines(str, fileConn)
+close(fileConn)
+```
