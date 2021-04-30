@@ -3,9 +3,10 @@
 ## Goals
 
 - [x] Orchestrate a workflow around a parameterized RMarkdown file.
-- [x] Run it in a remote server (see [#1](https://github.com/RETURN-project/helloflow/issues/1))
-- [ ] Pass a matrix of input names and output files
-- [ ] Clean behind
+- [x] Run it in a remote server (see [#1](https://github.com/RETURN-project/helloflow/issues/1)).
+- [ ] Pass a matrix of input names and output files.
+- [ ] Transfer to `dCache`.
+- [ ] Clean behind.
 
 ## Install
 
