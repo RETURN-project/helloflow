@@ -5,7 +5,7 @@
 
 # Create temporary directory
 mkdir "$TMPDIR"/helloflow
-cp -r $HOME/testground/helloflow "$TMPDIR"/helloflow
+cp -r $HOME/testground/helloflow/* "$TMPDIR"/helloflow
 cd "$TMPDIR"/helloflow
 
 # ===== Beginning of the analysis script =====
