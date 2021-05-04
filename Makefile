@@ -1,17 +1,13 @@
 # Parameters
 SINGULARITY_DEF="r-rmd.def"
 SINGULARITY_SIF="r-rmd.sif"
-OUTPUTFILE="output.txt"
 
 # Commands
 install:
 	sudo singularity build ${SINGULARITY_SIF} ${SINGULARITY_DEF}
 
 run:
-	./run.sh
+	./run.sh -n "Pablo R." -o "./output/output.txt"
 
 clean:
-	rm ${OUTPUTFILE} parameterized.html
-
-clean-hard:
-	rm ${SINGULARITY_SIF} ${OUTPUTFILE} parameterized.html
+	rm parameterized.html

@@ -3,16 +3,25 @@
 #SBATCH -c 1      #request 1 core and 8000 MB RAM
 #SBATCH -t 5:00   #request 5 minutes jobs slot
 
+# Example of usage:
+#
+# ./run.sh -n "Pablo R." -o "output/output.txt"
+
+# Parse parameters
+while getopts n:o: flag
+do
+    case "${flag}" in
+        n) NAME=${OPTARG};;
+        o) OUTPUTFILE=${OPTARG};;
+    esac
+done
+
 # Create temporary directory
 mkdir "$TMPDIR"/helloflow
 cp -r $HOME/testground/helloflow/* "$TMPDIR"/helloflow
 cd "$TMPDIR"/helloflow
 
 # ===== Beginning of the analysis script =====
-
-# Set parameters
-NAME="Pablo R."
-OUTPUTFILE="output/output.txt"
 
 # Execute
 srun \
