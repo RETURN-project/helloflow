@@ -3,7 +3,7 @@
 # Usage:
 # SLURM_ARRAY_TASK_ID=2 ./main.sh inputs.csv 
 # or
-# sbatch --array=2-3 -N1 ./main.sh
+# sbatch --array=2-3 -N1 ./main.sh inputs.csv 
 
 # Old idea:
 # cat $1 | xargs -n 1 ./run.sh
