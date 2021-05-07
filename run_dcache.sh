@@ -18,7 +18,7 @@ done
 
 # Set the directories
 TEMPWD="$TMPDIR"/helloflow/"$SLURM_ARRAY_TASK_ID" # Temporary working directory
-OUTDIR=$HOME/testground/helloflow/output # Output directory
+OUTDIR=helloflow/output # Output directory
 echo "$TEMPWD"
 echo "$OUTDIR"
 
@@ -37,8 +37,9 @@ singularity run r-rmd.sif \
 
 # When done, copy the output to the desired folder in dCache
 MACAROON="helloflow_macaroon.conf"
-#alias ada="ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1"
-ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1 --whoami
-#cp -r "$TEMPWD"/output/* "$OUTDIR"
+ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1 --whoami # Check access
+ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1 --mkdir "$OUTDIR" # Create the remote directory
+rclone --config=${MACAROON} copy helloflow_macaroon:"$TEMPWD"/output/"${SLURM_ARRAY_TASK_ID}" "$OUTDIR" # Copy
+
 echo "SUCCESS"
 exit 0
