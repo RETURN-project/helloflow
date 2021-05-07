@@ -5,7 +5,7 @@
 
 # Example of usage:
 #
-# ./run.sh -n "Pablo R." -o "output/output.txt"
+# ./run_dcache.sh -n "Pablo R." -o "output/output.txt"
 
 # Parse parameters
 while getopts n:o: flag
@@ -37,7 +37,7 @@ singularity run r-rmd.sif \
 
 # When done, copy the output to the desired folder in dCache
 MACAROON="helloflow_macaroon.conf"
-alias ada='ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1'
+alias ada="ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1"
 ada --whoami
 #cp -r "$TEMPWD"/output/* "$OUTDIR"
 echo "SUCCESS"
