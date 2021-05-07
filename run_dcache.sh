@@ -42,7 +42,7 @@ ls -R "$TEMPWD"
 MACAROON="helloflow_macaroon.conf"
 ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1 --whoami # Check access
 # ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1 --mkdir "$OUTDIR" # Create the remote directory
-rclone --config=${MACAROON} copy helloflow_macaroon:/"$TEMPWD"/output/ "$OUTDIR" # Copy
+rclone --config=${MACAROON} copy "$TEMPWD"/output/ helloflow_macaroon:/"$OUTDIR" # Copy
 
 echo "SUCCESS"
 exit 0
