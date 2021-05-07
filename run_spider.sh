@@ -19,7 +19,7 @@ done
 # Create temporary directory
 TEMPWD="$TMPDIR"/helloflow/"$SLURM_ARRAY_TASK_ID"
 echo "$TEMPWD"
-mkdir "$TEMPWD"
+mkdir -p "$TEMPWD"
 cp -r $HOME/testground/helloflow/* "$TEMPWD"
 cd "$TEMPWD"
 
