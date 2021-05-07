@@ -17,9 +17,11 @@ do
 done
 
 # Create temporary directory
-mkdir "$TMPDIR"/helloflow
-cp -r $HOME/testground/helloflow/* "$TMPDIR"/helloflow
-cd "$TMPDIR"/helloflow
+TEMPWD="$TMPDIR"/helloflow/"$SLURM_ARRAY_TASK_ID"
+echo TEMPWD
+mkdir TEMPWD
+cp -r $HOME/testground/helloflow/* TEMPWD
+cd TEMPWD
 
 # ===== Beginning of the analysis script =====
 
@@ -30,6 +32,6 @@ singularity run r-rmd.sif \
 # ===== End of analysis script =====
 
 # When done, copy the output to your /home storage
-cp -r "$TMPDIR"/helloflow/output/* $HOME/testground/helloflow/output
+cp -r TEMPWD/output/* $HOME/testground/helloflow/output
 echo "SUCCESS"
 exit 0
