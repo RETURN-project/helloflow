@@ -37,8 +37,8 @@ singularity run r-rmd.sif \
 
 # When done, copy the output to the desired folder in dCache
 MACAROON="helloflow_macaroon.conf"
-alias ada="ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1"
-ada --whoami
+#alias ada="ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1"
+ada --tokenfile ${MACAROON} --api https://dcacheview.grid.surfsara.nl:22880/api/v1 --whoami
 #cp -r "$TEMPWD"/output/* "$OUTDIR"
 echo "SUCCESS"
 exit 0
