@@ -16,9 +16,13 @@ do
     esac
 done
 
-# Create temporary directory
-TEMPWD="$TMPDIR"/helloflow/"$SLURM_ARRAY_TASK_ID"
+# Set the directories
+TEMPWD="$TMPDIR"/helloflow/"$SLURM_ARRAY_TASK_ID" # Temporary working directory
+OUTDIR=$HOME/testground/helloflow/output # Output directory
 echo "$TEMPWD"
+echo "$OUTDIR"
+
+# Work in temporary directory
 mkdir -p "$TEMPWD"
 cp -r $HOME/testground/helloflow/* "$TEMPWD"
 cd "$TEMPWD"
@@ -31,7 +35,7 @@ singularity run r-rmd.sif \
 
 # ===== End of analysis script =====
 
-# When done, copy the output to your /home storage
-cp -r "$TEMPWD"/output/* $HOME/testground/helloflow/output
+# When done, copy the output to the desired folder
+cp -r "$TEMPWD"/output/* "$OUTDIR"
 echo "SUCCESS"
 exit 0
