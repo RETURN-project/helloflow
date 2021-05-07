@@ -7,7 +7,7 @@ This project generates a personalized `Hello world!` message using a parameteriz
 - [x] Orchestrate a workflow around a parameterized RMarkdown file.
 - [x] Run it in a remote server (see [#1](https://github.com/RETURN-project/helloflow/issues/1)).
 - [x] Pass a matrix of input names and output files.
-- [ ] Transfer to `dCache`.
+- [x] Transfer to `dCache`.
 - [x] Clean behind.
 
 ## Install
@@ -17,6 +17,8 @@ make install
 ```
 
 Requires sudo and [singularity](https://sylabs.io/guides/3.0/user-guide/index.html).
+
+Copying to `dCache` requires creating a macaroon. For obvious security reasons, this is not included.
 
 ### Installing on a remote server
 
