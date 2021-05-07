@@ -24,8 +24,7 @@ cd "$TMPDIR"/helloflow
 # ===== Beginning of the analysis script =====
 
 # Execute
-srun \
-    singularity run r-rmd.sif \
+singularity run r-rmd.sif \
     Rscript -e "rmarkdown::render('parameterized.Rmd', params = list(who = '${NAME}', outputfile = '${OUTPUTFILE}'))"
 
 # ===== End of analysis script =====
